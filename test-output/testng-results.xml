@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results total="1" passed="1" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2023-12-20T09:33:38Z" name="Default suite" finished-at="2023-12-20T09:33:38Z" duration-ms="78">
+    <groups>
+    </groups>
+    <test started-at="2023-12-20T09:33:38Z" name="Default test" finished-at="2023-12-20T09:33:38Z" duration-ms="78">
+      <class name="CoreJavaConcepts.PS1">
+        <test-method is-config="true" signature="beforeRun()[pri:0, instance:CoreJavaConcepts.PS1@1b75c2e3]" started-at="2023-12-20T15:03:38Z" name="beforeRun" finished-at="2023-12-20T15:03:38Z" duration-ms="12" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeRun -->
+        <test-method signature="testRun()[pri:0, instance:CoreJavaConcepts.PS1@1b75c2e3]" started-at="2023-12-20T15:03:38Z" name="testRun" finished-at="2023-12-20T15:03:38Z" duration-ms="21" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testRun -->
+        <test-method is-config="true" signature="afterRun()[pri:0, instance:CoreJavaConcepts.PS1@1b75c2e3]" started-at="2023-12-20T15:03:38Z" name="afterRun" finished-at="2023-12-20T15:03:38Z" duration-ms="9" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterRun -->
+      </class> <!-- CoreJavaConcepts.PS1 -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>
