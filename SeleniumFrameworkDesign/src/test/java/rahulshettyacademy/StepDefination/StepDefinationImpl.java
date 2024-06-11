@@ -1,0 +1,90 @@
+package rahulshettyacademy.StepDefination;
+
+import java.io.IOException;
+import java.util.List;
+
+import org.openqa.selenium.WebElement;
+import org.testng.Assert;
+
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+import rahulshettyacademy.TestComponents.BaseTest;
+import rahulshettyacademy.pageobjects.CartPage;
+import rahulshettyacademy.pageobjects.CheckoutPage;
+import rahulshettyacademy.pageobjects.LandingPage;
+import rahulshettyacademy.pageobjects.ProductCataloague;
+import rahulshettyacademy.pageobjects.confirmationPage;
+
+public class StepDefinationImpl extends BaseTest {
+	public LandingPage landingPage;
+	public ProductCataloague productCataloague;
+	public confirmationPage ConfirmationPage;
+	
+	@Given("I landed on Ecommerce page")
+	public void I_landed_on_Ecommerce_page() throws IOException
+	{
+		landingPage =  launchApplication();
+		
+	}
+	
+	//@Given("^Logged in with username (.+) and password (.+)$") //when data is coming from "Example" section then used ("^ (.+)   $")
+	//public void logged_in_with_username_and_password(String username, String password)
+	//{
+		
+		//productCataloague = landingPage.loginApplication(username, password);
+	//}
+	
+	
+	@Given("Logged in  with username {string} and password {string}")
+			public void logged_in_with_username_and_password(String username, String password)
+	{
+		    productCataloague = landingPage.loginApplication(username, password);
+		   
+	}
+	
+//	@When("^I add product (.+) to cart$")
+	//public void I_add_product_to_cart(String productName)
+	//{
+		//List<WebElement>products = productCataloague.getProductList();
+		//productCataloague.addProductToCart(productName);
+	//}
+	
+	@When("I add product {string} from cart")
+	public void I_add_product_from_cart(String productName)
+	{
+		List<WebElement>products = productCataloague.getProductList();
+		productCataloague.addProductToCart(productName);
+	}
+
+	@When("^Checkout (.+) and submit the order$")
+	public void Checkout_productName_and_submit_the_order(String productName)
+	{
+		CartPage cartPage = productCataloague.goToCartPage();
+		Boolean Match = cartPage.verifyProductDisplay(productName);
+		//Assert.assertFalse(Match);
+		//Assert.assertTrue(Match);
+		CheckoutPage checkoutPage = cartPage.goToCheckout();
+		checkoutPage.selectCountry("india");
+		ConfirmationPage = checkoutPage.submitOrder();
+	}
+
+	
+	 
+	  @Then("{string} message is displayed on ConfirmationPage")   //when data is coming from feature file used { }
+	  public void message_is_displayed_on_ConfirmationPage(String string)
+	  {
+		  String confirmPage = ConfirmationPage.getConfirmationMessage();
+		  Assert.assertTrue(confirmPage.equalsIgnoreCase(string));
+		  driver.close();
+	  }
+	
+	  
+	   @Then("{string} message is displayed")
+	   public void error_message_is_displayed(String errormessage)
+	   {
+		   Assert.assertEquals(errormessage, landingPage.getErrorMessage());
+		   driver.close();
+	   }
+		   
+}

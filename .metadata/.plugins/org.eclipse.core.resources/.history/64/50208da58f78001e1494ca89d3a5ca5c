@@ -1,0 +1,55 @@
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+
+public class Calender {
+
+	public static void main(String[] args) throws InterruptedException {
+		// TODO Auto-generated method stub
+
+		System.setProperty("webdriver.chrome.driver", "C:\\Udemy_Selenium\\SeleniumTraining\\Introduction\\DriversFolder\\chromedriver.exe");
+		ChromeOptions options = new ChromeOptions();
+		options.setBinary("C:\\Selenium_Chrome Browser\\chrome-win64 (1)\\chrome-win64\\chrome.exe");
+		WebDriver driver = new ChromeDriver(options);
+		
+		driver.manage().window().maximize();
+		driver.get("https://www.path2usa.com/travel-companion/");
+		Thread.sleep(5000);
+		//Click on calender		
+		driver.findElement(By.xpath("//input[@id='form-field-travel_comp_date']")).click(); 
+		//driver.findElement(By.xpath("//input[@class='elementor-field elementor-size-sm elementor-field-textual elementor-date-field flatpickr-input']")).click();
+	//	driver.findElement(By.xpath("//input[@name='form_fields[travel_comp_date]']")).click();
+		Thread.sleep(5000);
+		//Select a month as March 2024
+		while(!driver.findElement(By.className("flatpickr-current-month")).getText().contains("March"))
+		{
+			driver.findElement(By.className("flatpickr-next-month")).click();
+		}
+		
+		
+				
+		
+		
+		
+		//Select a date from calender //grab the common attribute//put into the list and iterate  ****
+		List<WebElement> date =	driver.findElements(By.className("flatpickr-day")); 
+		int count =driver.findElements(By.className("flatpickr-day")).size();
+		for(int i =0; i<count; i++)
+		{
+			String text = driver.findElements(By.className("flatpickr-day")).get(i).getText();
+			if(text.equalsIgnoreCase("22"))
+			{
+				driver.findElements(By.className("flatpickr-day")).get(i).click();
+				break;
+			}
+		}
+		
+		
+		
+	}
+
+}

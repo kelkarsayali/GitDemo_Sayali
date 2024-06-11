@@ -1,0 +1,20 @@
+package CoreJavaConcepts;
+
+import org.testng.annotations.BeforeMethod;
+
+public class PS {
+
+	public void doThis()
+	{
+		System.out.println("I will run first");
+
+	}
+
+	
+	@BeforeMethod
+	public void beforeRun()
+	{
+	System.out.println("I am here");
+	}
+
+}

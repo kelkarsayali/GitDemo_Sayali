@@ -1,0 +1,66 @@
+import java.util.Arrays;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.Select;
+
+public class AssignmentExplicitWait {
+
+	public static void main(String[] args) throws InterruptedException {
+		System.setProperty("webdriver.chrome.driver", "C:\\Udemy_Selenium\\SeleniumTraining\\Introduction\\DriversFolder\\chromedriver.exe");
+		ChromeOptions options = new ChromeOptions();
+		options.setBinary("C:\\Selenium_Chrome Browser\\chrome-win64 (1)\\chrome-win64\\chrome.exe");
+		WebDriver driver = new ChromeDriver(options);
+		//driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+		driver.manage().window().maximize();
+		//Array
+	//	String[] Mobile = {"iphone X", "Samsung Note 8","Nokia Edge","Blackberry"};	
+		driver.get("https://rahulshettyacademy.com/loginpagePractise/");
+		driver.findElement(By.id("username")).sendKeys("rahulshettyacademy");
+		driver.findElement(By.id("password")).sendKeys("learning");
+		driver.findElement(By.xpath("//input[@value='user']")).click();
+		Thread.sleep(5000);
+		
+	System.out.println(driver.switchTo().alert().getText());
+	driver.switchTo().alert().dismiss();
+	//	System.out.println(driver.findElement(By.xpath("//button[@id='okayBtn']")));
+	//	driver.findElement(By.xpath("//button[@id='okayBtn']")).click();
+	
+		/*WebElement staticdropdown = driver.findElement(By.xpath("//select[@class='form-control']"));
+		Select dropdown = new Select(staticdropdown);
+		dropdown.selectByIndex(2);
+		driver.findElement(By.id("signInBtn")).click();
+		
+		//scroll down
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("window.scrollBy(0,250)", "");
+		
+		List <WebElement> products = driver.findElements(By.cssSelector("img.card-img-top"));
+		for(int i=1;i<products.size();i++)
+		{
+			
+			String name = products.get(i).getText();
+			List MobileList= Arrays.asList(Mobile);
+			
+			if(MobileList.contains(name))
+					{
+				
+					
+					driver.findElement(By.xpath("//button[@class='btn btn-info']")).click();
+					break;
+					}
+		
+			
+		}*/
+		
+		
+	}
+}
+
+

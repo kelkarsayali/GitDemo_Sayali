@@ -1,0 +1,80 @@
+import java.util.Arrays;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+
+public class Greenkart {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		System.setProperty("webdriver.chrome.driver", "C:\\Udemy_Selenium\\SeleniumTraining\\Introduction\\DriversFolder\\chromedriver.exe");
+		ChromeOptions options = new ChromeOptions();
+		options.setBinary("C:\\Selenium_Chrome Browser\\chrome-win64 (1)\\chrome-win64\\chrome.exe");
+		WebDriver driver = new ChromeDriver(options);
+		driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
+		
+		//declare an array
+		String[] itemsNeeded = {"Cucumber", "Brocolli", "Beetroot"};		
+		driver.get("https://rahulshettyacademy.com/seleniumPractise/");
+		driver.manage().window().maximize();
+		addItems(driver, itemsNeeded);
+		
+		
+		
+
+}
+
+   	public static void addItems(WebDriver driver, String[] itemsNeeded)
+   	{
+   	//Exact find of Cucumber 
+  		int j=0;
+  		List <WebElement> products=driver.findElements(By.cssSelector("h4.product-name"));
+  		for(int i=0;i<=products.size();i++)
+  		{	
+  			String[] name = products.get(i).getText().split("-");
+  			String formatedName =name[0].trim();
+  			//format it into actual name
+  			//check whether name you exacted is present in array or not
+  			//Convert an Array to Arraylist for easy search			
+  			List itemsNeededList= Arrays.asList(itemsNeeded);
+  				
+  			
+  		if(itemsNeededList.contains(formatedName))
+  		{
+  				j++;
+  				//Click on Add to Cart
+  				driver.findElements(By.xpath("//div[@class='product-action']")).get(i).click();
+  				if(j==itemsNeeded.length)
+  				{
+  					break;
+  				}
+  		}
+  			
+  		
+  			//Click on a Cart
+  		driver.findElement(By.cssSelector("img[alt='Cart']")).click();
+  			//Click on Procced to checkout button
+  		driver.findElement(By.xpath("//button[text()='PROCEED TO CHECKOUT']")).click();
+  			//enter a promocode
+  		driver.findElement(By.cssSelector("input.promoCode")).sendKeys("rahulshettyacademy");
+  			//click on apply
+  		driver.findElement(By.cssSelector("button.promoBtn")).click();
+  			//verify a text
+  	  System.out.println(driver.findElement(By.cssSelector("span.promoInfo")).getText());
+  	
+  		
+  		}
+  		
+   		
+}
+   	
+  
+  		
+  	}
+

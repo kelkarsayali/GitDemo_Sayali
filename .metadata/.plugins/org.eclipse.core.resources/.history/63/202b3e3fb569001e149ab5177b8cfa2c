@@ -1,0 +1,31 @@
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.Select;
+
+public class SpicejetE2EFlow {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub		
+
+		System.setProperty("webdriver.chrome.driver", "C:\\Udemy_Selenium\\SeleniumTraining\\Introduction\\DriversFolder\\chromedriver.exe");
+		ChromeOptions options = new ChromeOptions();
+		options.setBinary("C:\\Selenium_Chrome Browser\\chrome-win64 (1)\\chrome-win64\\chrome.exe");
+		WebDriver driver = new ChromeDriver(options);
+		
+		driver.get("https://rahulshettyacademy.com/dropdownsPractise/");
+		driver.manage().window().maximize();
+		//select 'From' dropdown
+		driver.findElement(By.xpath("//select[@id='ctl00_mainContent_ddl_originStation1']")).click();		
+		driver.findElement(By.xpath("//a[@value='CJB']")).click();
+		//select 'To' dropdown
+		driver.findElement(By.xpath("//a[@value='PNQ']")).click();
+		
+		
+		
+
+	}
+
+}

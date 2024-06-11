@@ -1,0 +1,13 @@
+package Test;
+
+public class Day1 {
+
+	
+	
+	public void Demo()
+	{
+		System.out.println("sayali");
+
+	}
+
+}
